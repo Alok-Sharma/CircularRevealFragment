@@ -13,4 +13,4 @@ It also shows how to use an interface to comunicate the fragment with the activi
 
 Minimum API level is 21, the AppCompat library doesn't support circle reveals, so even if you use it, you won't see the animations. The code doesn't provide a fallback solution, but you could implement ScaleAnimation or fade in/out.
 
-
+![alt tag](https://lh4.googleusercontent.com/-3WPPuWKk0vM/VGIbZkHiJfI/AAAAAAAAcPQ/Hw19G6L6ktc/s800/revealfragments2.gif)
