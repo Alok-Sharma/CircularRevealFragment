@@ -18,7 +18,7 @@ Minimum API level is 21, the AppCompat library doesn't support circle reveals, s
 License
 -------
 
-    Copyright 2014 Fernando Fernñandez Gallego
+    Copyright 2014 Fernando Fernández Gallego
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
