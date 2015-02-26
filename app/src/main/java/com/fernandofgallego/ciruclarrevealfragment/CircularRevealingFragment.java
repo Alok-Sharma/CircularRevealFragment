@@ -11,6 +11,7 @@ import android.view.ViewAnimationUtils;
 import android.view.ViewGroup;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
+import android.widget.RelativeLayout;
 
 /**
  * Created by Alok on 2/26/2015.
@@ -20,6 +21,7 @@ import android.view.animation.DecelerateInterpolator;
  */
 public class CircularRevealingFragment extends Fragment
 {
+    RelativeLayout rel;
 
     OnFragmentTouched listener;
 
@@ -64,7 +66,7 @@ public class CircularRevealingFragment extends Fragment
 
                 Animator reveal = ViewAnimationUtils.createCircularReveal(v, cx, cy, 0, radius);
                 reveal.setInterpolator(new DecelerateInterpolator(2f));
-                reveal.setDuration(1000);
+                reveal.setDuration(700);
                 reveal.start();
             }
         });
@@ -87,8 +89,8 @@ public class CircularRevealingFragment extends Fragment
     public void onAttach(Activity activity)
     {
         super.onAttach(activity);
-        if (activity instanceof OnFragmentTouched)
-            listener = (OnFragmentTouched)activity;
+//        if (activity instanceof OnFragmentTouched)
+//            listener = (OnFragmentTouched)activity;
     }
 
     /**
@@ -104,7 +106,7 @@ public class CircularRevealingFragment extends Fragment
         int radius = getEnclosingCircleRadius(getView(), (int)cx, (int)cy);
         Animator anim = ViewAnimationUtils.createCircularReveal(getView(), (int) cx, (int) cy, radius, 0);
         anim.setInterpolator(new AccelerateInterpolator(2f));
-        anim.setDuration(1000);
+        anim.setDuration(700);
         return anim;
     }
 
@@ -133,6 +135,11 @@ public class CircularRevealingFragment extends Fragment
                 radius = distances[i];
         }
         return radius;
+    }
+
+    public void makeInv(){
+        rel = (RelativeLayout)getView().findViewById(R.id.rel);
+        rel.setVisibility(View.INVISIBLE);
     }
 }
 
