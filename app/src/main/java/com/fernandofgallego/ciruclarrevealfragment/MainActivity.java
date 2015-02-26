@@ -4,7 +4,9 @@ import android.animation.Animator;
 import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
 
 /*
 License: http://www.apache.org/licenses/LICENSE-2.0
@@ -21,25 +23,38 @@ Modified code from ferdy182. Modifications are basically-
 //Bugs may wander beyond this point. Tread carefully.
 public class MainActivity extends Activity{
     CircularRevealingFragment mfragment;
+    Button button;
+    float x,y;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+        button = (Button)findViewById(R.id.addButton);
+
+        button.setOnTouchListener(new View.OnTouchListener(){
+
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                x = event.getX();
+                y = event.getY();
+                return false;
+            }
+        });
 	}
 
 	public void addFragment(View v)
 	{
 		int randomColor =
 				Color.argb(255, (int)(Math.random() * 255), (int)(Math.random() * 255), (int)(Math.random() * 255));
-		mfragment = CircularRevealingFragment.newInstance(20, 20, randomColor);
-//		getFragmentManager().beginTransaction().add(R.id.container, mfragment).commit();
+		mfragment = CircularRevealingFragment.newInstance((int)x, (int)y, randomColor);
         getFragmentManager().beginTransaction().add(android.R.id.content, mfragment).commit();
+//        getFragmentManager().beginTransaction().replace(android.R.id.content, mfragment).commit();
 	}
 
     public void remove(View v){
-        Animator unreveal = mfragment.prepareUnrevealAnimator(0, 0);
+        Animator unreveal = mfragment.prepareUnrevealAnimator(x, y);
         unreveal.addListener(new Animator.AnimatorListener()
         {
             @Override

@@ -4,8 +4,8 @@ import android.animation.Animator;
 import android.app.Activity;
 import android.app.Fragment;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewAnimationUtils;
 import android.view.ViewGroup;
@@ -37,6 +37,7 @@ public class CircularRevealingFragment extends Fragment
         args.putInt("color", color);
         CircularRevealingFragment fragment = new CircularRevealingFragment();
         fragment.setArguments(args);
+        Log.d("guitar", "1: " + centerX + " " + centerY);
         return fragment;
 
     }
@@ -60,7 +61,7 @@ public class CircularRevealingFragment extends Fragment
                 v.removeOnLayoutChangeListener(this);
                 int cx = getArguments().getInt("cx");
                 int cy = getArguments().getInt("cy");
-
+                Log.d("guitar", "2: " + cx + " " + cy);
                 // get the hypothenuse so the radius is from one corner to the other
                 int radius = (int)Math.hypot(right, bottom);
 
@@ -71,17 +72,6 @@ public class CircularRevealingFragment extends Fragment
             }
         });
 
-        // attach a touch listener
-        rootView.setOnTouchListener(new View.OnTouchListener()
-        {
-            @Override
-            public boolean onTouch(View v, MotionEvent event)
-            {
-                if (listener != null)
-                    listener.onFragmentTouched(CircularRevealingFragment.this, event.getX(), event.getY());
-                return true;
-            }
-        });
         return rootView;
     }
 
@@ -89,8 +79,6 @@ public class CircularRevealingFragment extends Fragment
     public void onAttach(Activity activity)
     {
         super.onAttach(activity);
-//        if (activity instanceof OnFragmentTouched)
-//            listener = (OnFragmentTouched)activity;
     }
 
     /**
@@ -103,6 +91,7 @@ public class CircularRevealingFragment extends Fragment
     public Animator prepareUnrevealAnimator(float cx, float cy)
     {
 
+        Log.d("guitar", "3: " + cx + " " + cy);
         int radius = getEnclosingCircleRadius(getView(), (int)cx, (int)cy);
         Animator anim = ViewAnimationUtils.createCircularReveal(getView(), (int) cx, (int) cy, radius, 0);
         anim.setInterpolator(new AccelerateInterpolator(2f));
