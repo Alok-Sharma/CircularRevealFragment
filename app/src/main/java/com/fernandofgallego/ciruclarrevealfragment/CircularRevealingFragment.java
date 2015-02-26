@@ -18,7 +18,7 @@ import android.view.animation.DecelerateInterpolator;
 /**
  * Our demo fragment
  */
-public static class CircularRevealingFragment extends Fragment
+public class CircularRevealingFragment extends Fragment
 {
 
     OnFragmentTouched listener;
