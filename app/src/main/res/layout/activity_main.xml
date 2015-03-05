@@ -1,4 +1,4 @@
-<LinearLayout
+<RelativeLayout
     android:id="@+id/container"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
@@ -12,6 +12,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="addFragment"
-        android:text="Add fragment"
-        android:id="@+id/addButton"/>
-</LinearLayout>
+        android:text="Accelerated"
+        android:id="@+id/addButton1"
+        android:layout_gravity="right"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="addFragment"
+        android:text="Constant"
+        android:id="@+id/addButton2"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true" />
+
+</RelativeLayout>
